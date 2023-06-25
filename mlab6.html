@@ -42,8 +42,6 @@ element.normalize();
 NodeList nList = doc.getElementsByTagName("place");
 displayResult.setText(" ");
 for (int i = 0; i < nList.getLength(); i++) {
-Mobile Application Development-18CSMP68 2021-2022
-Dept. of ISE, DBIT Page 46
 Node node = nList.item(i);
 if (node.getNodeType() == Node.ELEMENT_NODE) {
 Element element2 = (Element) node;
@@ -102,45 +100,6 @@ displayResult.setText(displayResult.getText() +
 catch(IOException e)
 {
 e.printStackTrace();
-Mobile Application Development-18CSMP68 2021-2022
-Dept. of ISE, DBIT Page 47
-[
-{
-"name": "Mysore ",
-"lat": "12.295 ",
-"long": "76.639 ",
-"temperature":"22 ",
-"humidity": "92 %"
-},
-{
-"name": "Bangalore",
-"lat": "12.97165 ",
-"long": "77.5946 ",
-"temperature":"25 ",
-"humidity": "74 %"
-}
-]
-<?xml version="1.0"?>
-<records>
-<place>
-<name>Mysore</name>
-<lat> 12.295 </lat>
-<long>76.639 </long>
-<temperature> 22 </temperature>
-<humidity> 90 % </humidity>
-</place>
-<place>
-<name>Bangalore</name>
-<lat> 12.97165 </lat>
-<long>77.5946 </long>
-<temperature> 25 </temperature>
-<humidity> 74 % </humidity>
-Navigate to the Project Option. Click on app → scr → main folder. Right click on main → new
-→ Directory. Create a new directory named assets. Create a file example.json in the assets
-folder. Following is the content of the file assets/example.json
-example.json
-Create a file city.xml in the assets folder. Following is the content of the file assets/city.xml
-city.xml
 catch (JSONException e)
 {
 e.printStackTrace();
