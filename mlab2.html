@@ -1,0 +1,225 @@
+package com.example.lab2a;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import java.text.DecimalFormat;
+public class MainActivity extends AppCompatActivity {
+Button button0, button1, button2, button3, button4, button5, button6,
+button7, button8, button9, buttonAdd, buttonSub, buttonDivision,
+buttonMul, button10, buttonC, buttonEqual;
+EditText inputnum;
+TextView result;
+private double mValueOne= Double.NaN, mValueTwo;
+boolean crunchifyAddition;
+private static final char ADDITION = '+';
+private static final char SUBTRACTION = '-';
+private static final char MULTIPLICATION = '*';
+private static final char DIVISION = '/';
+private char CURRENT_ACTION;
+private DecimalFormat decimalFormat;
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+decimalFormat = new DecimalFormat("#.##########");
+button0 = findViewById(R.id.button0);
+Following is the content of the modified main activity file src/MainActivity.java
+MainActivity.java
+android:layout_width="55dp"
+android:layout_height="45dp"
+android:layout_marginStart="227dp"
+android:layout_marginTop="340dp"
+android:layout_marginEnd="126dp"
+android:layout_marginBottom="532dp"
+android:text="C"
+app:layout_constraintBottom_toBottomOf="parent"
+app:layout_constraintEnd_toEndOf="parent"
+app:layout_constraintHorizontal_bias="0.135"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toTopOf="parent"
+app:layout_constraintVertical_bias="0.0" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+Mobile Application Development-18CSMP68 2021-2022
+Dept. of ISE, DBIT Page 26
+button1 = findViewById(R.id.button1);
+button2 = findViewById(R.id.button2);
+button3 = findViewById(R.id.button3);
+button4 = findViewById(R.id.button4);
+button5 = findViewById(R.id.button5);
+button6 = findViewById(R.id.button6);
+button7 = findViewById(R.id.button7);
+button8 = findViewById(R.id.button8);
+button9 = findViewById(R.id.button9);
+button10 = findViewById(R.id.buttondot);
+buttonAdd = findViewById(R.id.buttonplus);
+buttonSub = findViewById(R.id.buttonsub);
+buttonDivision = findViewById(R.id.buttondiv);
+buttonMul = findViewById(R.id.buttonmul);
+buttonC = findViewById(R.id.buttoncan);
+buttonEqual = findViewById(R.id.buttonequal);
+inputum = findViewById(R.id.editText4);
+result = findViewById(R.id.textView8);
+button0.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+inputnum.setText(inputnum.getText() + "0");
+}
+});
+button1.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+inputnum.setText(inputnum.getText() + "1");
+}
+});
+button2.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+inputnum.setText(inputnum.getText() + "2");
+}
+});
+button3.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+inputnum.setText(inputnum.getText() + "3");
+}
+});
+button4.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+inputnum.setText(inputnum.getText() + "4");
+}
+});
+button5.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+inputnum.setText(inputnum.getText() + "5");
+}
+});
+button6.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+inputnum.setText(inputnum.getText() + "6");
+}
+Mobile Application Development-18CSMP68 2021-2022
+Dept. of ISE, DBIT Page 27
+});
+button7.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+inputnum.setText(inputnum.getText() + "7");
+}
+});
+button8.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+inputnum.setText(inputnum.getText() + "8");
+}
+});
+button9.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+inputnum.setText(inputnum.getText() + "9");
+}
+});
+button10.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+inputnum.setText(inputnum.getText() + ".");
+}
+});
+buttonAdd.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View v) {
+}
+});
+computeCalculation();
+CURRENT_ACTION = ADDITION;
+result.setText(decimalFormat.format(mValueOne) + "+");
+inputnum.setText(null);
+buttonSub.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+computeCalculation();
+CURRENT_ACTION = SUBTRACTION;
+result.setText(decimalFormat.format(mValueOne) + "-");
+inputnum.setText(null);
+}
+});
+buttonMul.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+computeCalculation();
+CURRENT_ACTION = MULTIPLICATION;
+result.setText(decimalFormat.format(mValueOne) + "*");
+inputnum.setText(null);
+}
+});
+buttonDivision.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+computeCalculation();
+CURRENT_ACTION = DIVISION;
+Mobile Application Development-18CSMP68 2021-2022
+Dept. of ISE, DBIT Page 28
+}
+});
+result.setText(decimalFormat.format(mValueOne) + "/");
+inputnum.setText(null);
+1));
+buttonC.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+if(inputnum.getText().length() > 0) {
+CharSequence currentText = inputnum.getText();
+inputnum.setText(currentText.subSequence(0, currentText.length()-
+}
+else {
+mValueOne = Double.NaN;
+mValueTwo = Double.NaN;
+inputnum.setText("");
+result.setText("");
+}
+}
+});
+buttonEqual.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+computeCalculation();
+result.setText(result.getText().toString() +
+decimalFormat.format(mValueTwo) + " = " +
+decimalFormat.format(mValueOne));
+mValueOne = Double.NaN;
+CURRENT_ACTION = '0';
+}
+});
+}
+private void computeCalculation()
+{
+if(!Double.isNaN(mValueOne))
+{
+mValueTwo = Double.parseDouble(inputnum.getText().toString());
+inputnum.setText(null);
+if(CURRENT_ACTION == ADDITION)
+mValueOne = this.mValueOne + mValueTwo;
+else if(CURRENT_ACTION == SUBTRACTION)
+mValueOne = this.mValueOne - mValueTwo;
+else if (CURRENT_ACTION == MULTIPLICATION)
+mValueOne = this.mValueOne * mValueTwo;
+else if (CURRENT_ACTION == DIVISION)
+mValueOne = this.mValueOne / mValueTwo;
+}
+else
+{
+try
+{
+}
+mValueOne = Double.parseDouble(inputnum.getText().toString());
+catch (Exception e)
+{
+}
+}
+}
+}
