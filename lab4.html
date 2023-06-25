@@ -1,98 +1,53 @@
-package com.example.lab4a;
-import androidx.appcompat.app.AppCompatActivity;
-import android.app.WallpaperManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.AnimationDrawable;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
-import java.io.IOException;
-import java.util.Timer;
-import java.util.TimerTask;
-public class MainActivity extends AppCompatActivity {
-Button changewallpaper;
-Timer mytimer;
-Drawable drawable;
-WallpaperManager wpm;
-int prev=1;
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-super.onCreate(savedInstanceState);
-setContentView(R.layout.activity_main);
-Save five images (jpg format) in the drawable folder. In this example one.jpg, two.jpg,three.jpg,
-four.jpg and five.jpg images are saved in drawable folder.
-MainActivity.java
-app:layout_constraintHorizontal_bias="0.496"
-app:layout_constraintLeft_toLeftOf="parent"
-app:layout_constraintRight_toRightOf="parent"
-app:layout_constraintStart_toStartOf="parent"
-app:layout_constraintTop_toTopOf="parent"
-app:layout_constraintVertical_bias="0.063" />
-<Button
-android:id="@+id/button"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:layout_marginStart="72dp"
-android:layout_marginTop="53dp"
-android:layout_marginEnd="35dp"
-android:layout_marginBottom="590dp"
-android:text="CLICK HERE TO CHANGE WALLPAPER"
-app:layout_constraintBottom_toBottomOf="parent"
-app:layout_constraintEnd_toEndOf="parent"
-app:layout_constraintHorizontal_bias="0.820"
-app:layout_constraintStart_toStartOf="parent"
-app:layout_constraintTop_toTopOf="parent"
-app:layout_constraintVertical_bias="0.0" />
-</androidx.constraintlayout.widget.ConstraintLayout>
-Mobile Application Development-18CSMP68 2021-2022
-Dept. of ISE, DBIT Page 39
-mytimer = new Timer();
-wpm = WallpaperManager.getInstance(this);
-changewallpaper = findViewById(R.id.button);
-changewallpaper.setOnClickListener(new View.OnClickListener() {
-@Override
-public void onClick(View view) {
-setWallpaper();
-}
-});
-}
-private void setWallpaper()
-{
-mytimer.schedule(new TimerTask() {
-@Override
-public void run() {
-if(prev==1) {
-drawable = getResources().getDrawable(R.drawable.one);
-prev = 2;
-}
-else if(prev==2) {
-drawable = getResources().getDrawable(R.drawable.two);
-prev=3;
-}
-else if(prev==3) {
-drawable = getResources().getDrawable(R.drawable.three);
-prev=4;
-}
-else if(prev==4) {
-drawable = getResources().getDrawable(R.drawable.four);
-prev=5;
-}
-else if(prev==5) {
-drawable = getResources().getDrawable(R.drawable.five);
-prev=1;
-}
-Bitmap wallpaper = ((BitmapDrawable)drawable).getBitmap();
-try {
-wpm.setBitmap(wallpaper);
-}
-catch (IOException e) {
-e.printStackTrace();
-}
-}
-},0,30000);
-}
-}
+package com.example.labprgm4; 
+import androidx.appcompat.app.AppCompatActivity; 
+import android.app.WallpaperManager; 
+import android.graphics.BitmapFactory; 
+import android.os.Bundle; 
+import android.view.View; 
+import android.widget.Button; 
+import java.io.IOException; 
+import java.util.Timer; 
+import java.util.TimerTask; 
+public class MainActivity extends AppCompatActivity { 
+ int images[] = new int[]{ 
+ R.drawable.i1, 
+ R.drawable.i2, 
+ R.drawable.i3, 
+ R.drawable.i4, 
+ R.drawable.i5, 
+ R.drawable.i6, 
+ R.drawable.i7, 
+ R.drawable.i8 
+ }; 
+ Button btn; 
+ int i=0; 
+ @Override 
+ protected void onCreate(Bundle savedInstanceState) { 
+ super.onCreate(savedInstanceState); 
+ setContentView(R.layout.activity_main); 
+ btn = findViewById(R.id.btn); 
+ btn.setOnClickListener(new View.OnClickListener() { 
+ @Override 
+ public void onClick(View v) { 
+ new Timer().schedule(new ChangeWallpaper(),0, 3000); 
+ } 
+ }); 
+ } 
+ class ChangeWallpaper extends TimerTask{ 
+ @Override 
+ public void run() { 
+ WallpaperManager wallpaperManager = 
+WallpaperManager.getInstance(getBaseContext()); 
+ try { 
+ wallpaperManager.setBitmap( 
+BitmapFactory.decodeResource(getResources(),images[i])); 
+ i++; 
+ if(i==8){ 
+ i=0; 
+ } 
+ } catch (IOException e) { 
+ e.printStackTrace(); 
+ } 
+ } 
+ } 
+} 
