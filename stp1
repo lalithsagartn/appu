@@ -1,0 +1,33 @@
+#include<stdio.h>
+main()
+{
+int a,b,c;
+a=b=c=0; //initialization
+printf("enter three integers which are sides of the triangle : \n");
+scanf("%d%d%d", &a,&b,&c);
+printf("Side A is:%d\t Side B is:%d\t Side C is:%d\n", a,b,c);
+//checks the ranges of the integers a, b and c
+if(!((1<=a) && (a<=10)) && (!((1<=b) && (b<=10))) && (!((1<=c)&&(c<=10))))
+printf("a, b & c is not in the range\n")
+else if(!((1<=a) && (a<=10)) && (!((1<=b) && (b<=10))))
+printf("a, b not in the range\n");
+else if(!((1<=b) && (b<=10)) && (!((1<=c) && (c<=10))))
+printf("b, c not in the range\n");
+else if(!((1<=a) && (a<=10)) && (!((1<=c) && (c<=10))))
+printf("a, c not in the range\n");
+else if(!((1<=a) && (a<=10)))
+printf("a is not in a range\n");
+else if(!((1<=b) && (b<=10)))
+printf("b is not in a range\n");
+else if(!((1<=c) && (c<=10)))
+printf("c is not in a range\n");
+//check the conditions whether three integers will form triangle or not
+else if((a<b+c) && (b<a+c) && (c<a+b))
+if((a==b) && (b==c))
+printf("\n--------Equilateral triangle \n");
+else if((a!=b) && (a!=c) && (b!=c))
+printf("----------Scalene triangle \n");
+else
+else printf("----------Isosceles triangle \n");
+printf("-----------Not a Triangle \n");
+}
