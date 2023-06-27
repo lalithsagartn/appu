@@ -1,0 +1,19 @@
+#include<stdio.h>
+void main()
+{
+1. float per;
+2. printf("Enter the percentage\n");
+3. scanf("%f",&per);
+4. if(per>=80&&per<=100)
+5. printf("A grade\n");
+6. else if(per>=70)
+7. printf("B grade\n");
+8. else if(per>=60)
+9. printf("C grade\n");
+10. else if(per>=50)
+11. printf("D grade\n");
+12. else if(per>=35&&per<=50)
+13. printf("E grade\n");
+14. else
+15. printf("Fail\n");
+16. }
